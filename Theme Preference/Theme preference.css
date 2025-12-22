@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+
+/* ===== Default Light Theme ===== */
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f6fb;
+  color: #222;
+  transition: 0.3s ease;
+}
+
+.container {
+  padding: 40px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #667eea;
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* ===== Dark Theme Class (JS will toggle this) ===== */
+body.dark {
+  background: #121212;
+  color: #f1f1f1;
+}
+
+body.dark .container {
+  background: #1f1f1f;
+}
+
+body.dark button {
+  background: #ff7675;
+}
