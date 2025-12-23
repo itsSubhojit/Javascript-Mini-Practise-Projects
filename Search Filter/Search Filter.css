@@ -1,0 +1,154 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: #000;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 0;
+}
+
+/* App Container - Ab ye sab kuch vertically align karega */
+.app {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column; /* 🔥 Elements ko ek ke niche ek lane ke liye */
+  gap: 10px;             /* Search aur Error ke beech gap */
+}
+
+/* Search Input */
+#searchInput {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid #333;
+  background-color: #1a1a1a;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#searchInput:focus {
+  border-color: #555;
+  background-color: #222;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+/* Error Message - Input ke niche hamesha left aligned */
+#error {
+  display: none;
+  color: #ff4747;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px 0 15px 5px;
+  width: 100%;
+  text-align: left;
+}
+
+/* --- DESKTOP VIEW: HORIZONTAL SCROLLING --- */
+.cards {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 25px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory; /* Cards snap karengi */
+  -webkit-overflow-scrolling: touch;
+  
+  /* Performance Optimization */
+  contain: layout paint;
+}
+
+/* Custom Scrollbar for Desktop */
+.cards::-webkit-scrollbar {
+  height: 6px;
+}
+.cards::-webkit-scrollbar-track {
+  background: transparent;
+}
+.cards::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+
+/* Card Design */
+.card {
+  background: #1c1c1c;
+  border-radius: 18px;
+  overflow: hidden;
+  color: #fff;
+  min-width: 280px; /* Card size on desktop */
+  width: 280px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  
+  /* 🔥 Buttery Smooth Performance Boosters */
+  transform: translateZ(0); 
+  will-change: transform;
+  backface-visibility: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.content {
+  padding: 18px;
+}
+
+.content h2 {
+  font-size: 19px;
+  margin-bottom: 8px;
+  text-transform: capitalize;
+}
+
+.content p {
+  font-size: 14px;
+  color: #999;
+  line-height: 1.5;
+}
+
+/* --- MOBILE VIEW: VERTICAL STACK --- */
+@media (max-width: 768px) {
+  .app {
+    width: 92%;
+  }
+
+  .cards {
+    flex-direction: column; /* 🔥 Mobile pe ek ke niche ek */
+    overflow-x: hidden;
+    scroll-snap-type: none;
+    gap: 25px;
+  }
+
+  .card {
+    width: 100%;          /* Mobile pe full width */
+    min-width: unset;
+    transform: none !important; /* Mobile pe hover animations band */
+    transition: none;
+  }
+  
+  .card img {
+    height: 250px;       /* Mobile pe image thodi badi dikhegi */
+  }
+}
