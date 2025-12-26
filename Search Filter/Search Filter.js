@@ -84,8 +84,8 @@ inp.addEventListener("input", ()=>{
     });
     
     if(newusers.length === 0 && inp.value !== ""){
-            document.querySelector("#error").style.display = "block";
-            document.querySelector("#error").textContent = "No Users Found!"
+            error.style.display = "block";
+            error.textContent = "No Users Found!"
         }else{
             error.style.display = "none";
         }
