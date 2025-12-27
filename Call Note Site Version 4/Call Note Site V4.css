@@ -1,0 +1,385 @@
+/* ===== VARIABLES & RESET ===== */
+:root {
+  --bg-color: #f4f4f4;
+  --card-bg: #ffffff;
+  --text-main: #111;
+  --text-muted: #888;
+  --border-light: #eee;
+  
+  --btn-black: #000;
+  --btn-red: #ff4d4f;
+  
+  --emergency: #d32f2f;
+  --important: #f57c00;
+  --urgent: #6200ea;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background: var(--bg-color);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== MAIN LAYOUT ===== */
+.main-layout {
+  display: flex;
+  align-items: flex-start; /* Aligns items to top so form doesn't stretch layout weirdly */
+  gap: 40px;
+  padding: 40px;
+}
+
+/* ===== SIDE CONTROLS ===== */
+.side-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 40px; /* Align visually with card top */
+}
+
+/* Left Buttons */
+.control-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  transition: transform 0.2s;
+}
+
+.control-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Right Dots */
+.color-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.color-dot.black { background: #000; }
+.color-dot.purple { background: #a855f7; }
+.color-dot.orange { background: #f97316; }
+.color-dot.teal { background: #14b8a6; }
+
+/* ===== APP CONTAINER ===== */
+/* Change this in your CSS */
+.app-container {
+  width: 360px;
+  height: 420px;    /* Add a height so the container doesn't collapse */
+  position: relative; /* This is the most important part */
+}
+
+/* ===== SHARED CARD STYLES ===== */
+.card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 30px;
+  width: 100%;
+  position: relative;
+}
+
+/* The "Stack" effect for the profile card */
+.stacked {
+  box-shadow: 
+    0 0 0 0 rgba(0,0,0,0),
+    0 10px 0 -2px #e5e5e5,  /* First layer below */
+    0 20px 0 -4px #d4d4d4,  /* Second layer below */
+    0 15px 30px rgba(0,0,0,0.1); /* Drop shadow */
+}
+
+.app-container .card {
+  display: none;
+}
+
+.app-container .card.active {
+  display: block;
+}
+
+
+/* ===== PROFILE CARD STYLES ===== */
+/* Add/Update these properties for the card */
+.profile-card {
+  position: absolute; /* This stacks them on top of each other */
+  top: 0;
+  left: 0;
+  width: 100%;
+  /*display: none;      /* Hide all cards by default */
+}
+
+.profile-card h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.profile-header img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 5px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.info-row .label {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.info-row .value {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+/* ===== FORM CARD STYLES ===== */
+
+.form-card {
+  width: 360px;
+}
+
+.form-card {
+  width: 450px;   /* SAME as app-container */
+  max-width: 90vw;
+}
+
+.form-card {
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  display: none;
+}
+
+.form-card h3 {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #000;
+}
+
+/* ===== CATEGORY RADIO CUSTOM STYLE ===== */
+
+.group-title {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Thoda gap badhaya clean look ke liye */
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--text-main);
+  user-select: none; /* Text highlight hone se rokta hai */
+}
+
+/* 1. Asli Input ko chupao (Hide default ugly radio) */
+.radio-item input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* 2. Custom Outer Circle (Ring) create karo */
+.radio-item span::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc; /* Default Grey Border */
+  border-radius: 50%;
+  margin-right: 12px;
+  vertical-align: middle;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+/* 3. Custom Inner Dot (Filled Circle) create karo */
+.radio-item span::after {
+  content: '';
+  position: absolute;
+  left: 5px; /* Center karne ke liye adjust kiya */
+  top: 50%;
+  transform: translateY(-50%) scale(0); /* Default hidden (scale 0) */
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+/* ===== COLOR LOGIC (Jab Click Ho) ===== */
+
+/* Emergency (Red) */
+.radio-item input[value="Emergency"]:checked + span::before {
+  border-color: var(--emergency);
+}
+.radio-item input[value="Emergency"]:checked + span::after {
+  background-color: var(--emergency);
+  transform: translateY(-50%) scale(1); /* Show dot */
+}
+
+/* Important (Orange) */
+.radio-item input[value="Important"]:checked + span::before {
+  border-color: var(--important);
+}
+.radio-item input[value="Important"]:checked + span::after {
+  background-color: var(--important);
+  transform: translateY(-50%) scale(1);
+}
+
+/* Urgent (Purple) */
+.radio-item input[value="Urgent"]:checked + span::before {
+  border-color: var(--urgent);
+}
+.radio-item input[value="Urgent"]:checked + span::after {
+  background-color: var(--urgent);
+  transform: translateY(-50%) scale(1);
+}
+
+/* No Rush (Green) */
+.radio-item input[value="No Rush"]:checked + span::before {
+  border-color: #16a34a;
+}
+.radio-item input[value="No Rush"]:checked + span::after {
+  background-color: #16a34a;
+  transform: translateY(-50%) scale(1);
+}
+
+
+/* Buttons */
+.btn {
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-black {
+  background: var(--btn-black);
+  color: white;
+}
+
+.btn-light {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.btn-red {
+  background: var(--btn-red);
+  color: white;
+}
+
+.block {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 14px;
+  border-radius: 16px; /* Slightly squarer for form buttons */
+}
+
+.form-actions-stack {
+  margin-top: 30px;
+}
+
+/*new 27-12-2025: at 01:42 AM from gemini*/
+
+/* Position the dot inside the card */
+.profile-card {
+  position: absolute;
+  overflow: visible; /* Ensure glow isn't cut off */
+}
+
+.status-dot {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  z-index: 5;
+}
+
+/* Color Classes and Glow Effects */
+.dot-Emergency { background-color: var(--emergency); box-shadow: 0 0 10px var(--emergency); animation: glow-red 1.5s infinite; }
+.dot-Important { background-color: var(--important); box-shadow: 0 0 10px var(--important); animation: glow-orange 1.5s infinite; }
+.dot-Urgent   { background-color: var(--urgent); box-shadow: 0 0 10px var(--urgent); animation: glow-purple 1.5s infinite; }
+.dot-NoRush   { background-color: #16a34a; box-shadow: 0 0 10px #16a34a; animation: glow-green 1.5s infinite; }
+
+/* Glow Animation Keyframes */
+@keyframes glow-red { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; box-shadow: 0 0 20px var(--emergency); } }
+@keyframes glow-orange { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; box-shadow: 0 0 20px var(--important); } }
+@keyframes glow-purple { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; box-shadow: 0 0 20px var(--urgent); } }
+@keyframes glow-green { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; box-shadow: 0 0 20px #16a34a; } }
