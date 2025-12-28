@@ -46,4 +46,3 @@ buttons.forEach(function(btn) {
 });
 });
 
-
