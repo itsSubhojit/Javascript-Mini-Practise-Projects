@@ -1,56 +1,49 @@
-// 1. Sare buttons aur display ko select karein
-const buttons = document.querySelectorAll(".btn");
+// 1. Select all buttons and the display element
+const buttons = document.querySelectorAll(".btn"); // Selects all elements with the 'btn' class
 const display = document.querySelector(".display");
 
-// 2. Har button ke liye click event listener
+
+// Adding a 'click' event listener to every button
 buttons.forEach(function(btn) {
   btn.addEventListener("click", function() {
     const buttontext = btn.textContent;
+    //display.textContent += buttontext;
 
-    // A. Agar Clear (C) click ho
-    if (buttontext === "C") {
-      display.textContent = "0";
-    } 
-    
-    // B. Agar Equal (=) click ho
-    else if (buttontext === "=") {
-      try {
-        let equation = display.textContent;
-        display.textContent = eval(equation);
-      } catch {
-        display.textContent = "Error";
-      }
-    } 
-    
-    // C. Agar Backspace (⌫) click ho
-    else if (buttontext === "⌫") {
-      let currentText = display.textContent;
-      let newText = currentText.slice(0, -1);
-      
-      // Agar hatane ke baad kuch na bache, toh 0 dikhao
-      if (newText === "") {
+    if(buttontext === "C"){
         display.textContent = "0";
-      } else {
-        display.textContent = newText;
-      }
-    } 
-    
-    // D. Agar display par "0" hai
+    }else if( buttontext === "="){
+
+        try{
+            let equation = display.textContent;
+            display.textContent = eval(equation);
+        }catch{
+            display.textContent = "Error";
+        }
+
+    }else if(buttontext === "⌫"){
+        let newarr = display.textContent.slice(0,-1);
+        display.textContent = newarr;
+
+          if(display.textContent === ""){
+            display.textContent = "0";
+          }
+
+    }
     else if (display.textContent === "0") {
-      // Agar button ek Number hai, toh 0 ko replace kardo
-      // Agar button ek Operator (+, -, *, /) hai, toh 0 ke sath rehne do
+      // Agar button NUMBER hai, toh 0 hata kar replace karo (=)
       if (!isNaN(buttontext) || buttontext === ".") {
         display.textContent = buttontext;
-      } else {
+      } 
+      // Agar button OPERATOR hai, toh 0 ke sath jodo (+=)
+      else {
         display.textContent += buttontext;
       }
     } 
-    
-    // E. Baaki saari cheezon ke liye (Numbers/Operators add karte raho)
+    // AGAR SCREEN PAR PEHLE SE KOI NUMBER HAI
     else {
       display.textContent += buttontext;
     }
-  });
+});
 });
 
 

@@ -30,20 +30,33 @@ body {
   align-items: flex-end;
   margin-bottom: 25px;
   padding: 10px;
+  /* Add this to prevent container growth */
+  overflow: hidden; 
 }
 
 .display {
   color: #fff;
-  font-size: 56px;
+  font-size: 56px; /* Default size */
   font-weight: 300;
   margin-bottom: 10px;
+  /* Add these lines */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Agar zyada bada ho toh ... dikhayega */
+  width: 100%;
+  text-align: right;
+  transition: font-size 0.2s ease; /* Smooth size change ke liye */
 }
 
 .indicator-bar {
-  width: 45px;
+  width: 250px;
   height: 4px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
+}
+
+.indicator-bar {
+  margin-left: 5px;
   margin-right: 5px;
 }
 
@@ -70,6 +83,7 @@ body {
 }
 
 .operator {
+  background: black;
   color: #fb923c;
 }
 
@@ -79,7 +93,8 @@ body {
 }
 
 .clear, .backspace {
-  color: #94a3b8;
+  background: #94a3b8;
+  color: #000000;
 }
 
 /* Zero button fills the extra space to keep grid solid */
