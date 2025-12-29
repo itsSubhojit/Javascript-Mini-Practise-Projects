@@ -46,3 +46,43 @@ buttons.forEach(function(btn) {
 });
 });
 
+
+//Adding Windows Keydown to use Directly Keyboard
+
+window.addEventListener("keydown", function(event) {
+    const key = event.key;
+
+    if (key === "Escape" || key === "Delete") {
+        display.textContent = "0";
+    }
+
+    else if (key === "Enter") {
+        try {
+            display.textContent = eval(display.textContent);
+        } catch {
+            display.textContent = "Error";
+        }
+    } 
+
+    else if (key === "Backspace") {
+        let newText = display.textContent.slice(0, -1);
+        display.textContent = newText === "" ? "0" : newText; //Using Ternary Operator to check " "
+    } 
+    
+    // Numbers aur Operators Check
+    // Hum sirf unhi keys ko allow karenge jo calculator mein chahiye
+    else if (!isNaN(key) || ["+", "-", "*", "/", "%", "."].includes(key)) {
+        
+        if (display.textContent === "0") {
+            // Agar number hai toh replace karo, operator hai toh jodo
+            if (!isNaN(key) || key === ".") {
+                display.textContent = key;
+            } else {
+                display.textContent += key;
+            }
+        } else {
+            display.textContent += key;
+        }
+    }
+});
+

@@ -82,6 +82,45 @@ body {
   transform: scale(1.03);
 }
 
+/* 1. General Button Focus (Numbers) */
+.btn:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.08); 
+}
+
+/* 2. Operator Buttons Focus (Orange/Black) */
+.operator:focus {
+  background: black; /* Wapas wahi color jo aapne set kiya tha */
+  color: #fb923c;
+}
+
+/* 3. Clear & Backspace Focus (Grey) */
+.clear:focus, .backspace:focus {
+  background: #94a3b8;
+  color: #000000;
+}
+
+/* 4. Equal Button Focus (Orange) */
+.equal:focus {
+  background: #fb923c;
+  color: white;
+}
+
+/* --- ACTIVE STATES (Jab button dab raha ho) --- */
+
+.btn:active {
+  transform: scale(0.95);
+  filter: brightness(1.2); /* Thoda chamkega dabne par */
+}
+
+.operator:active {
+  background: #1e1e1e; /* Dabne par thoda light black */
+}
+
+.equal:active {
+  background: #f97316; /* Thoda dark orange */
+}
+
 .operator {
   background: black;
   color: #fb923c;
