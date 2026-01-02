@@ -1,25 +1,25 @@
-let addtask = document.querySelector("#addTaskBtn");
-let inp = document.querySelector("#taskInput");
+const inp = document.getElementById("taskInput");
+const container =document.getElementById("taskList");
+const btn = document.getElementById("addTaskBtn");
 
-
-function savetolocalstorage(obj){
-        if(localStorage.getItem("tasks") === null){
-            let oldtasks = [];
-            oldtasks.push(obj);
-            localStorage.setItem("tasks", JSON.stringify(oldtasks));
-        }else{
-            let oldtasks = localStorage.getItem("tasks");
-            oldtasks = JSON.parse(oldtasks);
-            oldtasks.push(obj);
-            localStorage.setItem("tasks", JSON.stringify(oldtasks));
-        }
+btn.addEventListener("click", function(){
+    if(inp.value === ""){
+        alert('Please Write Something!')
+    }else{
+        let li = document.createElement("li");
+        li.innerHTML = inp.value;
+        container.appendChild(li);
+        inp.value = "";
     }
-
-
-addtask.addEventListener("click", function(dets){
-    dets.preventDefault();
-    //console.log(dets);
-    
+    savedata();
 });
 
-savetolocalstorage();
+
+function savedata(){
+    localStorage.setItem("task", container.innerHTML);
+}
+
+function showdata(){
+    container.innerHTML = localStorage.getItem("task");
+}
+showdata();
