@@ -17,17 +17,21 @@ body {
 /* Main container */
 .container {
   background: #ffffff;
-  width: 350px;
-  padding: 25px 20px;
+  width: 380px; /* Slightly wider for better spacing */
+  padding: 30px 25px;
   border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
 .container h1 {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: #333;
-  font-size: 24px;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 /* Input area */
@@ -36,32 +40,31 @@ body {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .input-area input {
   flex: 1;
-  padding: 8px;
+  padding: 12px;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
+  border: 1px solid #ddd;
+  font-size: 15px;
   outline: none;
   transition: 0.3s;
 }
 
 .input-area input:focus {
   border-color: #6c63ff;
-  box-shadow: 0 0 5px #6c63ff;
 }
 
 .input-area button {
-  padding: 10px;
+  padding: 12px 18px;
   background-color: #6c63ff;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 15px;
+  font-weight: 600;
   transition: 0.3s;
 }
 
@@ -72,33 +75,89 @@ body {
 /* Task list */
 .task-list {
   list-style: none;
-  max-height: 250px;
+  max-height: 300px;
   overflow-y: auto;
+  padding-right: 5px;
 }
 
+/* Individual Task Item */
 .task-list li {
-  background: #f1f1f1;
-  padding: 10px 15px;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  background: #f8f9fa;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: 0.3s;
+  border-left: 5px solid #6c63ff; /* Accent line */
 }
 
 .task-list li:hover {
-  background: #e3e3ff;
+  background: #f0f0ff;
+  transform: translateX(5px);
 }
 
-.task-list li span {
+/* Task Text - FIXED COLOR */
+.task-text {
+  flex: 1;
+  text-align: left;
+  font-size: 16px;
+  color: #333; /* Dark gray for readability */
   cursor: pointer;
+  padding-right: 10px;
+}
+
+/* Style for completed tasks */
+.task-list li.checked {
+  background: #e8f5e9; /* Light green background for completed tasks */
+  border-left-color: #4caf50; /* Change accent color to green */
+  text-decoration: none; /* Avoid double decoration if applied to span */
+}
+
+.task-list li.checked .task-text {
+  text-decoration: line-through; /* Strike through only the text */
+  color: #888; /* Fade the text color */
+}
+
+/* Action buttons container */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Edit and Delete button styles */
+.edit-btn {
+  color: #ffae00;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+.edit-btn:hover {
+  color: #e69d00;
+  transform: scale(1.2);
+}
+
+.delete-btn {
   color: #ff5c5c;
-  font-weight: bold;
-  transition: 0.3s;
+  cursor: pointer;
+  font-size: 24px;
+  transition: 0.2s;
 }
 
-.task-list li span:hover {
-  color: #ff2e2e;
+.delete-btn:hover {
+  color: #e04b4b;
+  transform: scale(1.2);
 }
 
+/* Custom Scrollbar for the list */
+.task-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
