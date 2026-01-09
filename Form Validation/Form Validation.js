@@ -61,61 +61,33 @@ signupform.addEventListener("submit", function (dets){
     document.querySelector("#password").value ="";
     document.querySelector("#confirmPassword").value ="";
     }
-    
-
-
-/*
-    if(password === confirmpassword){
-        document.querySelector("#confirmError").style.display ="none";  
-    }else{
-        document.querySelector("#confirmError").textContent ="password & confirm pasword will be same";
-    }
-*/
-
-
-
-
-
-
-/*
     if(fullname.value.length >=3){
         document.querySelector("#hide").style.display = "none";
     }else{
         document.querySelector("#hide").style.cssText = "display:block; color:red";
-    } */
+    } 
 });
 
 
-// *** galat ho raha hai subha uth ke check karna***
+// show password or hide password
  togglepassword.addEventListener("click", function () {
     if (password.type === "password") {
         password.type = "text";
-        //confirmpassword.type = "text";
-        //togglepassword.textContent = "Hide";
-        //toggleconfirm.textContent = "Hide";
         togglepassword.classList.add("active");
     } else {
         password.type = "password";
-        //confirmpassword.type = "password";
-        //togglepassword.textContent = "Show";
-        //toggleconfirm.textContent = "Show";
         togglepassword.classList.remove("active");
     }
 });
 
+// show confirm password or hide confirm password
     toggleconfirm.addEventListener("click", function () {
     if (confirmpassword.type === "password") {
-        //password.type = "text";
         confirmpassword.type = "text";
-        //togglepassword.textContent = "Hide";
-        //toggleconfirm.textContent = "Hide";
         toggleconfirm.classList.add("active");
 
     } else {
-        //password.type = "password";
         confirmpassword.type = "password";
-        //togglepassword.textContent = "Show";
-        //toggleconfirm.textContent = "Show";
         toggleconfirm.classList.remove("active");
     }
 });
