@@ -21,8 +21,19 @@ body{
 }
 
 img{
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+img.show{
+    opacity: 1;
+}
+
+img{
     align-items:center;
     border: 2px solid pink;
+    padding: 10px;
+    background:white;
     border-radius: 3px;
     display: none;
 }
@@ -45,6 +56,7 @@ input::placeholder{
     color: white;
     cursor:pointer;
     border-radius: 2px;
+    border:1px solid black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     font-size: 15px;
@@ -60,10 +72,41 @@ input::placeholder{
     color: white;
     cursor:pointer;
     border-radius: 2px;
+    border:1px solid black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     font-size: 15px;
 }
 #delete:hover{
     background-color:rgb(184, 63, 63); ;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: none;         /* 🔥 Important: hide initially */
+  margin: 10px auto;          /* center horizontally */
+  border-radius: 50%;
+  background:
+    linear-gradient(0deg ,rgb(0 0 0/50%) 30%,#0000 0 70%,rgb(0 0 0/100%) 0) 50%/8% 100%,
+    linear-gradient(90deg,rgb(0 0 0/25%) 30%,#0000 0 70%,rgb(0 0 0/75% ) 0) 50%/100% 8%;
+  background-repeat: no-repeat;
+  animation: l23 1s infinite steps(12);
+}
+.loader::before,
+.loader::after {
+   content: "";
+   grid-area: 1/1;
+   border-radius: 50%;
+   background: inherit;
+   opacity: 0.915;
+   transform: rotate(30deg);
+}
+.loader::after {
+   opacity: 0.83;
+   transform: rotate(60deg);
+}
+@keyframes l23 {
+  100% {transform: rotate(1turn)}
 }
