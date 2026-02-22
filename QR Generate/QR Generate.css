@@ -1,0 +1,54 @@
+.container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:10px;
+}
+
+img{
+    align-items:center;
+    border: 2px solid pink;
+    border-radius: 3px;
+    display: none;
+}
+
+input{
+    width:200px;
+    height:25px;
+    border-radius: 3px;
+}
+
+input::placeholder{
+    text-align: center;
+    color:rgb(205, 108, 108);
+}
+
+#generate{
+    width: 150px;
+    height:30px;
+    background-color:rgb(145, 41, 242);
+    color: white;
+    cursor:pointer;
+    border-radius: 2px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+#generate:hover{
+    background-color: rgb(138, 96, 177);
+}
+
+#delete{
+    width: 150px;
+    height:30px;
+    background-color:rgb(158, 15, 15);
+    color: white;
+    cursor:pointer;
+    border-radius: 2px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+#delete:hover{
+    background-color:rgb(184, 63, 63); ;
+}
