@@ -31,6 +31,11 @@ incomeBtn.addEventListener("click", function(){
     inpBox.value = "";
     purposeBox.value = "";
     updateUi();
+    savetolocalstorage({
+        amount: num,
+        purpose,
+        type: "income",
+    });
 });
 
 expenseBtn.addEventListener("click", function(){
@@ -53,5 +58,23 @@ expenseBtn.addEventListener("click", function(){
     inpBox.value = "";
     purposeBox.value = "";
     updateUi();
+    savetolocalstorage({
+        amount: num,
+        purpose,
+        type: "expense",
+    });
 });
+
+function savetolocalstorage(obj){
+    if(localStorage.getItem("money") === null){
+        let walletBalance = [];
+        walletBalance.push(obj);
+        localStorage.setItem("money", JSON.stringify(walletBalance));
+    }else{
+        let walletBalance = localStorage.getItem("money");
+        walletBalance = JSON.parse(walletBalance);
+        walletBalance.push(obj);
+        localStorage.setItem("money", JSON.stringify(walletBalance));
+    }
+}
 
