@@ -78,3 +78,25 @@ function savetolocalstorage(obj){
     }
 }
 
+let storedData = localStorage.getItem("money");
+
+if(storedData){
+    let transaction = JSON.parse(storedData);
+
+transaction.forEach(function(item){
+    const li = document.createElement("li");
+
+    if(item.type === "income"){
+        li.textContent = item.purpose + ":  +" + item.amount;
+        li.style.color = "darkgreen";
+        balance += item.amount ;
+    }else{
+        li.textContent = item.purpose + ": -" + item.amount;
+        li.style.color = "red";
+        balance -= item.amount;
+    }
+
+    transactionList.appendChild(li);
+})
+   updateUi();
+}

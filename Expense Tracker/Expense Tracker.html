@@ -2,24 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Expense Tracker.css">
     <title>Expense Tracker</title>
+    <link rel="stylesheet" href="Expense Tracker.css">
 </head>
 <body>
-    <div class="container">
+
+<div class="card">
+
+    <h2 class="title">Expense Tracker</h2>
+
+    <div class="balance-box">
+        <p>Current Balance</p>
         <div class="balance">0</div>
+    </div>
 
-        <input type="text" id="inpbox" placeholder="enter your income/expenses">
-        <input type="text" id="purpose" placeholder="enter your purpose">
+    <div class="inputs">
+        <input type="text" id="inpbox" placeholder="Enter amount">
+        <input type="text" id="purpose" placeholder="Enter purpose">
+    </div>
 
+    <div class="buttons">
         <button id="income">Income</button>
         <button id="expense">Expense</button>
-
-        <ul class="transaction-list">
-        </ul>
     </div>
-    
-    <script src="Expense Tracker.js"></script>
+
+    <div class="transactions">
+        <h3>Transactions</h3>
+        <ul class="transaction-list"></ul>
+    </div>
+
+</div>
+
+<script src="Expense Tracker.js"></script>
 </body>
 </html>
