@@ -4,6 +4,7 @@ let numberAllowed = document.querySelector("#numbers");
 let symbolsAllowed = document.querySelector("#symbols");
 let resultBox = document.querySelector("#result")
 let copy = document.querySelector("#copy");
+let lengthInput = document.querySelector("#length");
 
 
 function passwordGenerator(e){
@@ -11,7 +12,7 @@ function passwordGenerator(e){
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let lowercase = "abcdefghijklmnopqrstuvwxyz";
     let num = "0123456789";
-    let symbols = "@#$%&*[]";
+    let symbols = "@#$%&*[]=!";
 
     if (lowercaseAllowed.checked) {
     str += lowercase;
@@ -25,8 +26,15 @@ if (symbolsAllowed.checked) {
     str += symbols;
 }
 
-    const length = 8 ;
+    let length = Number(lengthInput.value);
+
+    if (length<6 || length>20){
+            alert('It Can Generate a Password min 6 and max 20')
+            return;
+        }
+        
     for(let i=0; i<length; i++){
+
         let char = Math.floor(Math.random() * str.length)
       pass += str.charAt(char);
     }
